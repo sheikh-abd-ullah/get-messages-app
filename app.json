@@ -2,6 +2,11 @@
   "expo": {
     "name": "getmessages",
     "slug": "getmessages",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "383f07fe-34f8-4b6a-b67b-ad6a08da6e42"
+      }
+    }
   }
 }
