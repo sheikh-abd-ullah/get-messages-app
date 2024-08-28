@@ -1,26 +1,89 @@
-**Bluetooth Control App**
 
-This React Native application enables users to control Bluetooth-connected devices, such as lights, directly from their mobile devices. The app pairs with nearby Bluetooth devices, allowing users to search, connect, and send commands like turning devices ON or OFF.
+Here's a template for your GitHub README file for the React Native project:
 
-> **Features:**
-**Bluetooth Device Pairing:** Automatically fetches and displays paired Bluetooth devices.
-**Search Functionality:** Easily filter through available devices using a search bar.
-**Real-Time Connection:** Seamlessly connect to a selected Bluetooth device.
-**Device Control:** Send commands to connected devices to turn them ON or OFF.
-**Intuitive UI:** User-friendly interface with a responsive modal for managing device connections.
-**Custom Styling:** Orange-themed connect buttons and purple-themed ON/OFF buttons enhance the visual appeal.
+SMS Monitoring and Firebase Integration App
+This React Native app monitors SMS messages on an Android device and sends specific data to Firebase Firestore for further processing. The app continuously polls for new SMS messages from a specific phone number, extracts relevant information, and updates the data in Firestore only when there's a change.
 
-> **Technologies Used:**
-**React Native:** For building the cross-platform mobile application.
-**RNBluetoothClassic:** To handle Bluetooth communication.
-**React Native Modal:** For the modal that lists paired devices.
-**Toast Notifications:** For real-time feedback on connections and commands.
+Features
+SMS Monitoring: The app reads SMS messages from a specified phone number.
+Firebase Firestore Integration: Data extracted from SMS messages is stored and updated in Firebase Firestore.
+Data Change Detection: The app only updates Firestore when the new SMS data is different from the previous data.
+Authentication: Firebase Authentication is used to ensure that only authenticated users can update the Firestore data.
+Setup
+Prerequisites
+Node.js: Ensure you have Node.js installed on your system.
+React Native CLI: Install the React Native CLI globally.
+Android Studio: Set up Android Studio with the necessary Android SDKs.
+Firebase Project: Set up a Firebase project and obtain the google-services.json file.
+Installation
+Clone the repository:
 
-> **Getting Started:**
-Clone the repository.
-Install dependencies with npm install or yarn install.
-Run the app on your Android/iOS device using npx react-native run-android or npx react-native run-ios.
-Pair your mobile device with a Bluetooth device and enjoy controlling it through the app!
+bash
+Copy code
+git clone https://github.com/yourusername/sms-monitoring-app.git
+cd sms-monitoring-app
+Install dependencies:
 
-**Contribution:**
-Feel free to fork the repository, submit issues, or make pull requests to improve this project.
+bash
+Copy code
+npm install
+Set up Firebase:
+
+Place the google-services.json file in the android/app directory.
+Ensure your FirebaseConfig.js is correctly configured with your Firebase project credentials.
+Run the app on Android:
+
+bash
+Copy code
+npx react-native run-android
+Building the APK
+To generate a release APK:
+
+Generate a Keystore (if you don't have one):
+
+bash
+Copy code
+keytool -genkeypair -v -storetype PKCS12 -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+Place the my-release-key.keystore file in the android/app directory.
+
+Configure Gradle:
+
+Add the keystore information in android/app/build.gradle.
+Build the APK:
+
+bash
+Copy code
+cd android
+./gradlew assembleRelease
+Install the APK:
+
+bash
+Copy code
+adb install app/build/outputs/apk/release/app-release.apk
+Usage
+SMS Monitoring:
+
+The app continuously monitors incoming SMS messages from a specific phone number.
+Data such as "Dustbin Fill Level" and "Dustbin Location" are extracted and stored in Firestore.
+Firestore Data Management:
+
+The app only sends data to Firestore when the new SMS data differs from the previously stored data.
+Configuration
+Phone Number: Modify the phoneNumber variable in the App.js file to set the phone number from which SMS messages are monitored.
+Polling Interval: Adjust the polling interval by modifying the setInterval function in the startPolling method.
+Permissions
+Ensure the following permissions are added in AndroidManifest.xml:
+
+xml
+Copy code
+<uses-permission android:name="android.permission.READ_SMS" />
+<uses-permission android:name="android.permission.RECEIVE_SMS" />
+<uses-permission android:name="android.permission.INTERNET" />
+Contributing
+Contributions are welcome! Please submit a pull request or open an issue to discuss your changes.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Contact
+For any inquiries, please reach out to Muhammad Abdullah.
